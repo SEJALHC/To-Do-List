@@ -1,19 +1,20 @@
 document.getElementById('add-btn').addEventListener('click', function() {
-    var taskInput = document.getElementById('task-input');
+  var taskInput = document.getElementById('task-input').value.trim(); // Trim to remove leading and trailing spaces
+  
+  // Check if the task input is not empty
+  if (taskInput !== '') {
     var taskList = document.getElementById('task-list');
     var newTask = document.createElement('li');
-    newTask.textContent = taskInput.value;
+    newTask.textContent = taskInput;
     
     newTask.addEventListener('click', function() {
       newTask.classList.toggle('done');
     });
     
     taskList.appendChild(newTask);
-    taskInput.value = '';
-  });
-  
-  document.getElementById('profile-pic').addEventListener('change', function(event) {
-    var img = document.getElementById('profile-img');
-    img.src = URL.createObjectURL(event.target.files[0]);
-  });
+    document.getElementById('task-input').value = ''; // Clear the input field
+  } else {
+    alert('Please enter a task before adding.'); // Display an alert if the input is empty
+  }
+});
   
